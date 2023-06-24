@@ -1,19 +1,19 @@
-import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
-import AppBar from "@mui/material/AppBar";
-import Avatar from "@mui/material/Avatar";
-import FormControl from "@mui/material/FormControl";
-import IconButton from "@mui/material/IconButton";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Stack from "@mui/material/Stack";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
-import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
-import i18n from "i18next";
-import React, { useContext } from "react";
-import { ColorModeContext } from "../../contexts/color-mode";
+import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
+import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
+import FormControl from '@mui/material/FormControl';
+import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { useGetIdentity, useGetLocale, useSetLocale } from '@refinedev/core';
+import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from '@refinedev/mui';
+import i18n from 'i18next';
+import React, { useContext } from 'react';
+import { ColorModeContext } from '../../contexts/color-mode';
 
 type IUser = {
   id: number;
@@ -33,38 +33,37 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   const currentLocale = locale();
 
   return (
-    <AppBar position={sticky ? "sticky" : "relative"}>
+    <AppBar position={sticky ? 'sticky' : 'relative'}>
       <Toolbar>
-        <Stack direction="row" width="100%" alignItems="center">
+        <Stack direction='row' width='100%' alignItems='center'>
           <HamburgerMenu />
           <Stack
-            direction="row"
-            width="100%"
-            justifyContent="flex-end"
-            alignItems="center"
-            gap="16px"
+            direction='row'
+            width='100%'
+            justifyContent='flex-end'
+            alignItems='center'
+            gap='16px'
           >
             <FormControl sx={{ minWidth: 64 }}>
               <Select
                 disableUnderline
                 defaultValue={currentLocale}
-                inputProps={{ "aria-label": "Without label" }}
-                variant="standard"
+                inputProps={{ 'aria-label': 'Without label' }}
+                variant='standard'
                 sx={{
-                  color: "inherit",
-                  "& .MuiSvgIcon-root": {
-                    color: "inherit",
+                  color: 'inherit',
+                  '& .MuiSvgIcon-root': {
+                    color: 'inherit',
                   },
-                  "& .MuiStack-root > .MuiTypography-root": {
+                  '& .MuiStack-root > .MuiTypography-root': {
                     display: {
-                      xs: "none",
-                      sm: "block",
+                      xs: 'none',
+                      sm: 'block',
                     },
                   },
                 }}
               >
                 {[...(i18n.languages ?? [])].sort().map((lang: string) => (
-                  // @ts-ignore
                   <MenuItem
                     selected={currentLocale === lang}
                     key={lang}
@@ -75,20 +74,20 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                     value={lang}
                   >
                     <Stack
-                      direction="row"
-                      alignItems="center"
-                      justifyContent="center"
+                      direction='row'
+                      alignItems='center'
+                      justifyContent='center'
                     >
                       <Avatar
                         sx={{
-                          width: "24px",
-                          height: "24px",
-                          marginRight: "5px",
+                          width: '24px',
+                          height: '24px',
+                          marginRight: '5px',
                         }}
                         src={`/images/flags/${lang}.svg`}
                       />
                       <Typography>
-                        {lang === "en" ? "English" : "German"}
+                        {lang === 'en' ? 'English' : 'German'}
                       </Typography>
                     </Stack>
                   </MenuItem>
@@ -97,30 +96,30 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
             </FormControl>
 
             <IconButton
-              color="inherit"
+              color='inherit'
               onClick={() => {
                 setMode();
               }}
             >
-              {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
+              {mode === 'dark' ? <LightModeOutlined /> : <DarkModeOutlined />}
             </IconButton>
 
             {(user?.avatar || user?.name) && (
               <Stack
-                direction="row"
-                gap="16px"
-                alignItems="center"
-                justifyContent="center"
+                direction='row'
+                gap='16px'
+                alignItems='center'
+                justifyContent='center'
               >
                 {user?.name && (
                   <Typography
                     sx={{
                       display: {
-                        xs: "none",
-                        sm: "inline-block",
+                        xs: 'none',
+                        sm: 'inline-block',
                       },
                     }}
-                    variant="subtitle2"
+                    variant='subtitle2'
                   >
                     {user?.name}
                   </Typography>

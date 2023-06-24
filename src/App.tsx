@@ -1,5 +1,5 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { Authenticated, Refine } from '@refinedev/core';
+import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar';
 
 import {
   AuthPage,
@@ -8,36 +8,36 @@ import {
   RefineSnackbarProvider,
   ThemedLayoutV2,
   ThemedTitleV2,
-} from "@refinedev/mui";
+} from '@refinedev/mui';
 
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
+import CssBaseline from '@mui/material/CssBaseline';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import routerBindings, {
   CatchAllNavigate,
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import { useTranslation } from "react-i18next";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import authProvider from "./authProvider";
-import { AppIcon } from "./components/app-icon";
-import { Header } from "./components/header";
-import { ColorModeContextProvider } from "./contexts/color-mode";
+} from '@refinedev/react-router-v6';
+import { dataProvider, liveProvider } from '@refinedev/supabase';
+import { useTranslation } from 'react-i18next';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import authProvider from './authProvider';
+import { AppIcon } from './components/app-icon';
+import { Header } from './components/header';
+import { ColorModeContextProvider } from './contexts/color-mode';
 import {
   BlogPostCreate,
   BlogPostEdit,
   BlogPostList,
   BlogPostShow,
-} from "./pages/blog-posts";
+} from './pages/blog-posts';
 import {
   CategoryCreate,
   CategoryEdit,
   CategoryList,
   CategoryShow,
-} from "./pages/categories";
-import { supabaseClient } from "./utility";
+} from './pages/categories';
+import { supabaseClient } from './utility';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -50,11 +50,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
-          <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+          <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
           <RefineSnackbarProvider>
             <Refine
               dataProvider={dataProvider(supabaseClient)}
@@ -65,21 +64,21 @@ function App() {
               i18nProvider={i18nProvider}
               resources={[
                 {
-                  name: "blog_posts",
-                  list: "/blog-posts",
-                  create: "/blog-posts/create",
-                  edit: "/blog-posts/edit/:id",
-                  show: "/blog-posts/show/:id",
+                  name: 'blog_posts',
+                  list: '/blog-posts',
+                  create: '/blog-posts/create',
+                  edit: '/blog-posts/edit/:id',
+                  show: '/blog-posts/show/:id',
                   meta: {
                     canDelete: true,
                   },
                 },
                 {
-                  name: "categories",
-                  list: "/categories",
-                  create: "/categories/create",
-                  edit: "/categories/edit/:id",
-                  show: "/categories/show/:id",
+                  name: 'categories',
+                  list: '/categories',
+                  create: '/categories/create',
+                  edit: '/categories/edit/:id',
+                  show: '/categories/show/:id',
                   meta: {
                     canDelete: true,
                   },
@@ -93,13 +92,13 @@ function App() {
               <Routes>
                 <Route
                   element={
-                    <Authenticated fallback={<CatchAllNavigate to="/login" />}>
+                    <Authenticated fallback={<CatchAllNavigate to='/login' />}>
                       <ThemedLayoutV2
                         Header={() => <Header sticky />}
                         Title={({ collapsed }) => (
                           <ThemedTitleV2
                             collapsed={collapsed}
-                            text="refine Project"
+                            text='refine Project'
                             icon={<AppIcon />}
                           />
                         )}
@@ -111,21 +110,21 @@ function App() {
                 >
                   <Route
                     index
-                    element={<NavigateToResource resource="blog_posts" />}
+                    element={<NavigateToResource resource='blog_posts' />}
                   />
-                  <Route path="/blog-posts">
+                  <Route path='/blog-posts'>
                     <Route index element={<BlogPostList />} />
-                    <Route path="create" element={<BlogPostCreate />} />
-                    <Route path="edit/:id" element={<BlogPostEdit />} />
-                    <Route path="show/:id" element={<BlogPostShow />} />
+                    <Route path='create' element={<BlogPostCreate />} />
+                    <Route path='edit/:id' element={<BlogPostEdit />} />
+                    <Route path='show/:id' element={<BlogPostShow />} />
                   </Route>
-                  <Route path="/categories">
+                  <Route path='/categories'>
                     <Route index element={<CategoryList />} />
-                    <Route path="create" element={<CategoryCreate />} />
-                    <Route path="edit/:id" element={<CategoryEdit />} />
-                    <Route path="show/:id" element={<CategoryShow />} />
+                    <Route path='create' element={<CategoryCreate />} />
+                    <Route path='edit/:id' element={<CategoryEdit />} />
+                    <Route path='show/:id' element={<CategoryShow />} />
                   </Route>
-                  <Route path="*" element={<ErrorComponent />} />
+                  <Route path='*' element={<ErrorComponent />} />
                 </Route>
                 <Route
                   element={
@@ -135,33 +134,33 @@ function App() {
                   }
                 >
                   <Route
-                    path="/login"
+                    path='/login'
                     element={
                       <AuthPage
-                        type="login"
+                        type='login'
                         title={
                           <ThemedTitleV2
                             collapsed={false}
-                            text="refine Project"
+                            text='refine Project'
                             icon={<AppIcon />}
                           />
                         }
                         formProps={{
                           defaultValues: {
-                            email: "info@refine.dev",
-                            password: "refine-supabase",
+                            email: 'info@refine.dev',
+                            password: 'refine-supabase',
                           },
                         }}
                       />
                     }
                   />
                   <Route
-                    path="/register"
-                    element={<AuthPage type="register" />}
+                    path='/register'
+                    element={<AuthPage type='register' />}
                   />
                   <Route
-                    path="/forgot-password"
-                    element={<AuthPage type="forgotPassword" />}
+                    path='/forgot-password'
+                    element={<AuthPage type='forgotPassword' />}
                   />
                 </Route>
               </Routes>
