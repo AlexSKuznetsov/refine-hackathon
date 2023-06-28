@@ -3,8 +3,8 @@ export {};
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      SUPABASE_KEY: string;
-      SUPABASE_URL: string;
+      VITE_SUPABASE_KEY: string;
+      VITE_SUPABASE_URL: string;
     }
   }
 }

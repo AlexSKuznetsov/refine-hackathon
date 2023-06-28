@@ -1,8 +1,10 @@
 import { createClient } from "@refinedev/supabase";
 
-const {SUPABASE_KEY, SUPABASE_URL} = process.env
+const {VITE_SUPABASE_KEY, VITE_SUPABASE_URL} = import.meta.env
 
-export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
+console.log('import.meta.env', import.meta.env);
+
+export const supabaseClient = createClient(VITE_SUPABASE_URL, VITE_SUPABASE_KEY, {
   db: {
     schema: "public",
   },
